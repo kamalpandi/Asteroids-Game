@@ -1,10 +1,9 @@
-# this allows us to use code from
-# the open-source pygame library
-# throughout this file
 import pygame
 import os
 
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH
@@ -20,15 +19,37 @@ def main():
     y = SCREEN_HEIGHT / 2
     color = (225, 225, 225)
     width = 2
+
+    # Shared groups
+    updatables = pygame.sprite.Group()
+    drawables = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+
+    # Set containers
+    Player.containers = (updatables, drawables)
+    Asteroid.containers = (asteroids, updatables, drawables)
+    AsteroidField.containers = (updatables,)  
+
+    # Create player
     player = Player(x, y, color, width)
+
+    # Create asteroid field
+    asteroid_field = AsteroidField()
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        pygame.Surface.fill(screen, (0, 0, 0))
-        player.update(dt)
-        player.draw(screen)
+
+        screen.fill((0, 0, 0))
+
+        # Update all updatables
+        updatables.update(dt)
+
+        # Draw all drawables
+        for drawable in drawables:
+            drawable.draw(screen)
+
         pygame.display.flip()
         dt = fps.tick(60)
 

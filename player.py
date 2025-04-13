@@ -4,7 +4,10 @@ from constants import PLAYER_RADIUS, PLAYER_SPEED, PLAYER_TURN_SPEED
 
 
 class Player(CircleShape):
+    containers = ()
     def __init__(self, x, y, color, width):
+        pygame.sprite.Sprite.__init__(self, self.containers)  # add to groups
+        CircleShape.__init__(self, x, y, PLAYER_RADIUS) 
         self.color = color
         self.width = width
         self.rotation = 0
