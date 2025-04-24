@@ -5,9 +5,10 @@ from constants import PLAYER_RADIUS, PLAYER_SPEED, PLAYER_TURN_SPEED
 
 class Player(CircleShape):
     containers = ()
+
     def __init__(self, x, y, color, width):
         pygame.sprite.Sprite.__init__(self, self.containers)  # add to groups
-        CircleShape.__init__(self, x, y, PLAYER_RADIUS) 
+        CircleShape.__init__(self, x, y, PLAYER_RADIUS)
         self.color = color
         self.width = width
         self.rotation = 0
@@ -32,7 +33,7 @@ class Player(CircleShape):
 
         if keys[pygame.K_a]:
             self.rotate(-PLAYER_TURN_SPEED * dt)
-            
+
         if keys[pygame.K_s]:
             self.move(-PLAYER_SPEED * dt)
 
@@ -41,8 +42,7 @@ class Player(CircleShape):
 
     def rotate(self, angle_change):
         self.rotation += angle_change
-    
+
     def move(self, dt):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         self.position += forward * PLAYER_SPEED * dt
-        

@@ -1,20 +1,19 @@
 import pygame
 from circleshape import CircleShape
+from constants import SHOT_RADIUS
 
 
-class Asteroid(CircleShape):
-    containers = ()
-
+class Shot(CircleShape):
     def __init__(self, x, y, radius):
+        self.shot_radius = SHOT_RADIUS
         super().__init__(x, y, radius)
-        pass
 
     def draw(self, screen):
         pygame.draw.circle(
             screen,
             (200, 200, 200),
             (int(self.position.x), int(self.position.y)),
-            int(self.radius),
+            int(self.radius),  # Pass the radius as a separate argument
             2,
         )
 
