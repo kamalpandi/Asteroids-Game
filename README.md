@@ -1,6 +1,6 @@
 # Going to build a simple video game, based on the classic Asteroids. If you've never played before, [you can take a look at this](https://www.echalk.co.uk/amusements/Games/asteroidsClassic/ateroids.html) (slightly different) version of the game
 
-![gif](https://github.com/kamalpandi/Asteroids-Game/static/demo.gif)
+![gif](static/demo.gif)
 
 ## Learning Goals
 
