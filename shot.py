@@ -1,9 +1,9 @@
 import pygame
-from constants import LINE_WIDTH
+from constants import SHOT_RADIUS, LINE_WIDTH
 from circleshape import CircleShape
 
 
-class Asteroid(CircleShape):
+class Shot(CircleShape):
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
 
@@ -12,7 +12,7 @@ class Asteroid(CircleShape):
             screen,
             color="white",
             width=LINE_WIDTH,
-            radius=self.radius,
+            radius=SHOT_RADIUS,
             center=(self.position),
         )
 
