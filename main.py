@@ -1,4 +1,5 @@
 import sys
+import asyncio
 import pygame
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
@@ -8,7 +9,7 @@ from player import Player
 from shot import Shot
 
 
-def main():
+async def main():
     pygame.init()
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -49,7 +50,8 @@ def main():
             if player.collides_with(asteroid):
                 log_event("player_hit")
                 print("Game over!")
-                sys.exit()
+                running = False
+                return
 
         # clear the screen
         screen.fill("black")
@@ -63,6 +65,8 @@ def main():
         # limit the framerate to 60 FPS
         dt = clock.tick(60) / 1000
 
+        # critical for pygbag / browser
+        await asyncio.sleep(0)
 
-if __name__ == "__main__":
-    main()
+
+asyncio.run(main())
