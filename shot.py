@@ -16,5 +16,8 @@ class Shot(CircleShape):
             center=(self.position),
         )
 
+    def collides_with(self, other):
+        return super().collides_with(other)
+
     def update(self, dt):
         self.position += self.velocity * dt
